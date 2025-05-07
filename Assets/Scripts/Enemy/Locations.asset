@@ -1,0 +1,23 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 93c09b1e5fd7006478564c8d74a250e8, type: 3}
+  m_Name: Locations
+  m_EditorClassIdentifier: 
+  PatrolObjects:
+  - gameObjects:
+    - {fileID: 1563063996872130768, guid: d819af20049c9fd41b6c513315c3379e, type: 3}
+    - {fileID: 9128432556368083509, guid: 777f076714c558b468a298a183ec9349, type: 3}
+    - {fileID: 5234293637859310319, guid: 241db0b3974a2d84688033986d5ff773, type: 3}
+  - gameObjects:
+    - {fileID: 6065976265138271727, guid: f6e8b03c02e52a1468c774883e3c6f4b, type: 3}
+    - {fileID: 3180797354364976029, guid: 85b2b7578a6d8214eaff2191f53ec8c6, type: 3}
+    - {fileID: 4264240924217924872, guid: 36cf10c0e8cb14e43be412237cbddfc4, type: 3}
