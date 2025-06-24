@@ -11,14 +11,25 @@ namespace HelloWorld
     {
 
         [Header("Current Debug")]
-        
+        public NetworkCharacterSwitch _characterswitch;
+        public bool isgrd = false;
         [SerializeField] private float AirControlspeed;
         public state currentState;
 
 
         [Header("Jump")]
-        public NetworkVariable<bool> IsGrounded = new NetworkVariable<bool>();
+        public NetworkVariable<bool> IsGrounded = new NetworkVariable<bool>(
+            default,
+            NetworkVariableReadPermission.Everyone,
+            NetworkVariableWritePermission.Owner
+            
+            );
+        public NetworkVariable<bool> isGroundClient = new NetworkVariable<bool>(
+             default,
+            NetworkVariableReadPermission.Everyone,
+            NetworkVariableWritePermission.Owner
 
+            );
 
         [Header("References")]
         private Rigidbody _rb;
@@ -63,8 +74,14 @@ namespace HelloWorld
         public enum state { idle, walk, run, jump, Combat };
 
         RaycastHit hit;
+
+        private void Awake()
+        {
+            _characterswitch = GameObject.Find("CharacterSelect").GetComponent<NetworkCharacterSwitch>();
+        }
         public override void OnNetworkSpawn()
         {
+        
             base.OnNetworkSpawn();
             Initialize();           
         }
@@ -96,7 +113,7 @@ namespace HelloWorld
         }
 
         private void Start()
-        {
+        {           
             _rb = GetComponent<Rigidbody>();
             cam = Camera.main;
             _moveing = true;
@@ -108,7 +125,7 @@ namespace HelloWorld
             // Read input values
             movevalues = _move.ReadValue<Vector2>();
             //Check if this work for client
-            if (!IsGrounded.Value)
+            if (!isgrd)//!IsGrounded.Value)
             {
                 _anim.SetBool("InAir",true);
             }
@@ -132,8 +149,8 @@ namespace HelloWorld
 
         public void PlayerJump(InputAction.CallbackContext context)
         {
-            if (!IsGrounded.Value) return;          
-            _anim.SetBool("Jump",IsGrounded.Value);
+            if (!isgrd) return;// if (!IsGrounded.Value) return;          
+            _anim.SetBool("Jump",isgrd);
             
         }
         public void PlayerOffJump(InputAction.CallbackContext context)
@@ -178,11 +195,21 @@ namespace HelloWorld
                 
             }
         }
-        [ServerRpc(RequireOwnership = false)]
+        [ServerRpc]
         public void HandleGroundServerRpc(bool value)
         {           
-            IsGrounded.Value = value;
-            _anim.SetBool("InAir", !IsGrounded.Value);
+           // IsGrounded.Value = value;
+           isgrd = value;
+            _anim.SetBool("InAir", !isgrd);
+           HandleGroundClientRpc(value);
+        }
+
+        [ClientRpc]
+        public void HandleGroundClientRpc(bool value)
+        {
+            // isGroundClient.Value = value;
+            isgrd = value;
+            _anim.SetBool("InAir", !isgrd);
         }
 
         [ServerRpc]

@@ -11,10 +11,20 @@ namespace HelloWorld {
         public Transform P1;
         public Transform P2;
 
-     
+        public NetworkVariable<bool> Grounded = new NetworkVariable<bool>(default,
+            NetworkVariableReadPermission.Everyone,
+            NetworkVariableWritePermission.Owner
+
+            );
+
+        private void Awake()
+        {
+            Application.targetFrameRate = 60;
+        }
+
         public override void OnNetworkSpawn()
         {
-           
+            Grounded.Value = false;
 
             if (IsServer)
             {               

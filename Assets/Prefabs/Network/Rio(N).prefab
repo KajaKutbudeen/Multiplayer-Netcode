@@ -884,6 +884,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ShowTopMostFoldoutHeaderGroup: 1
+  _anim: {fileID: 3793717974838845592}
   _player: {fileID: 2108850615812610852}
   jumpamount: 5
   rb: {fileID: 6243191822677753279}

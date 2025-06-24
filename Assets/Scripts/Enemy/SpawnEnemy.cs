@@ -20,19 +20,4 @@ public class SpawnEnemy : NetworkBehaviour
         }
     }
 
-    private void HandleServerConnectedCallback(ulong clientId)
-    {
-
-    }
-    private void HandleClientConnected(ulong clientId)
-    {
-        if (clientId == NetworkManager.Singleton.LocalClientId)
-            return; // Skip host
-        Debug.Log("Client connected");
-        GameObject clientObj = Instantiate(enemyprefab, p2.position, Quaternion.identity);
-        clientObj.GetComponent<NetworkObject>().SpawnAsPlayerObject(clientId);
-
-
-        //   SpawnPrefab(ClientPrefab);    
-    }
 }

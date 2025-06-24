@@ -6,10 +6,6 @@ public class PatrolObjectspawn : MonoBehaviour
 {
     public PatrolLocations _PL;
 
-    private void Start()
-    {
-        
-    }
     public List<Transform> ReciveList(List<Transform> objlist,int id)
     {
         PatrolObjects patrol = _PL.PatrolObjects[id];

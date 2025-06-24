@@ -3,7 +3,7 @@ using UnityEngine;
 using Unity.Netcode;
 public class NetworkMovementEvent : NetworkBehaviour
 {
-    private Animator _anim;
+    public Animator _anim;
     public CharacterPlayer _player;
     [SerializeField]
     float jumpamount = 2f;
@@ -11,7 +11,7 @@ public class NetworkMovementEvent : NetworkBehaviour
 
     private void Start()
     {
-        _anim = GetComponent<Animator>();
+       // _anim = GetComponent<Animator>();
     }
     public void Jump()
     {
