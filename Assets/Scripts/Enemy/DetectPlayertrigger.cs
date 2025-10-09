@@ -36,7 +36,7 @@ public class DetectPlayertrigger : MonoBehaviour
         {
             if (other.gameObject.CompareTag("Player"))
             {
-                _ne.Player = other.gameObject;
+             //   _ne.Player = other.gameObject;
                 playerdetect = true;
                 
             }
@@ -63,7 +63,7 @@ public class DetectPlayertrigger : MonoBehaviour
             if (other.gameObject.CompareTag("Player"))
             {
                 playerdetect = false;
-                _ne.Player = null;
+               // _ne.Player = null;
             }
         }
     }
